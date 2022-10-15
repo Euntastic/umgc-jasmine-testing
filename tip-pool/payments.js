@@ -14,8 +14,7 @@ paymentForm.addEventListener('submit', submitPaymentInfo);
 function submitPaymentInfo(evt) {
   if (evt) evt.preventDefault(); // when running tests there is no event
 
-  let curPayment = createCurPayment();
-
+  const curPayment = createCurPayment();
   if (curPayment) {
     paymentId += 1;
 
@@ -70,7 +69,8 @@ function updateSummary() {
   } else {
     tipPercentAvg = paymentTotal / Object.keys(allPayments).length;
   }
-
+  
+  // Side Effects
   summaryTds[0].innerHTML = '$' + sumPaymentTotal('billAmt');
   summaryTds[1].innerHTML = '$' + sumPaymentTotal('tipAmt');
   summaryTds[2].innerHTML =  Math.round(tipPercentAvg) + '%';
