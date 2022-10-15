@@ -1,4 +1,6 @@
 describe("Payments.js test.", () => {
+    
+    const testSummaryTable = document.querySelector('#summaryTable tbody tr');
 
     beforeEach(() => {
         billAmtInput.value = 100;
@@ -16,7 +18,7 @@ describe("Payments.js test.", () => {
 
     });
 
-    describe("The appendPaymentTable() functions", () => {
+    describe("The appendPaymentTable() function.", () => {
         it('Should update the table #tablePayment tbody with appropriate information.', () => {
             submitPaymentInfo();
             const testPaymentTable = document.querySelectorAll('#paymentTable tbody tr td');
@@ -34,11 +36,22 @@ describe("Payments.js test.", () => {
         });
     });
 
+    describe("The createCurPayment() function.", () => {
+        it('Should create an object containing values with the appropriate input.', () => {
+            expect(createCurPayment()).toEqual({ billAmt: '100', tipAmt: '20', tipPercent: 20 });
+        });
+
+        it('Should return undefined if the input is missing.', () => {
+            billAmtInput.value = '';
+            tipAmtInput.value = '';
+            expect(createCurPayment()).toEqual(undefined);
+        })
+    })
+
     afterEach(() => {
         allPayments = {};
         paymentId = 0;
         paymentTbody.innerHTML = "";
-        const testSummaryTable = document.querySelector('#summaryTable tbody tr');
         testSummaryTable.innerHTML = '';
     });
 });
