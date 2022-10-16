@@ -28,12 +28,7 @@ describe("Payments.js test.", () => {
             expect(testPaymentTable[2].innerText).toBe("20%");
         });
 
-        it('Should not add anything to the #tablePayment if input is empty.', () => {
-            billAmtInput.value = '';
-            tipAmtInput.value = '';
-            submitPaymentInfo();
-            expect(paymentTbody.innerText).toBe('');
-        });
+
     });
 
     describe("The createCurPayment() function.", () => {
@@ -45,7 +40,16 @@ describe("Payments.js test.", () => {
             billAmtInput.value = '';
             tipAmtInput.value = '';
             expect(createCurPayment()).toEqual(undefined);
-        })
+        });
+    })
+
+    describe("The submitPaymentInfo() function.", () => {
+        it('Should not add anything to the #tablePayment if input is empty.', () => {
+            billAmtInput.value = '';
+            tipAmtInput.value = '';
+            submitPaymentInfo();
+            expect(paymentTbody.innerText).toBe('');
+        });
     })
 
     afterEach(() => {
